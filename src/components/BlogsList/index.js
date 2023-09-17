@@ -16,7 +16,10 @@ class BlogsList extends Component {
 
   getBlogsData = async () => {
     const response = await fetch('https://apis.ccbp.in/blogs')
+    const statusCode = await response.statusCode
+    console.log(statusCode)
     const data = await response.json()
+
     const formattedData = data.map(eachItem => ({
       id: eachItem.id,
       title: eachItem.title,
@@ -30,6 +33,8 @@ class BlogsList extends Component {
 
   render() {
     const {blogsData, isLoading} = this.state
+    console.log(isLoading)
+
     return (
       <div className="blog-list-container">
         {isLoading ? (
